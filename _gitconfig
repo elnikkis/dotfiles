@@ -1,0 +1,8 @@
+[user]
+	name = elnikkis
+	email = noahluces@gmail.com
+[color]
+	ui = auto
+[core]
+	editor = vim
+	pager = lv -c
