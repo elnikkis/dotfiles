@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-My dotfiles
+dot.[dotfile] is copied to $HOME/\* by script.
