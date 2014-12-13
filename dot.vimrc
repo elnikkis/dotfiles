@@ -60,3 +60,8 @@ set ts=4 sw=4 sts=0 "タブを設定
 set expandtab "tabではなく空白を挿入
 set shiftround  " インデントするときにshiftwidthの倍数に丸める
 set number "行番号
+
+"debianでbackspaceが効かなかった
+noremap  
+noremap!  
+set backspace=indent,eol,start
