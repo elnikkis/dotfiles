@@ -18,7 +18,7 @@ runtime! debian.vim
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 syntax on
-colorscheme elflord
+"colorscheme elflord
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
