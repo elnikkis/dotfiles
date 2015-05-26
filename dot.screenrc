@@ -1,0 +1,23 @@
+# screenの操作をtmux風にする(ちからつきた)
+#
+# splitは横分割しかできない
+# 分割したあとにシェルを開始するにはprefix-cしなければならない
+# exitすると全部exitする
+# 分割したところを閉じるには、prefix-X
+
+# 最初のメッセージを消す
+startup_message off
+
+# Prefix key
+escape ^Bb
+
+# デタッチ
+autodetach on
+
+# 効いてない気がする
+shell -${SHELL}
+
+# key bind
+bind l prev
+bind \" split
+bind o focus
