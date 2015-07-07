@@ -1,40 +1,51 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
-" /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
-" you can find below.  If you wish to change any of those settings, you should
-" do it in this file (/etc/vim/vimrc), since debian.vim will be overwritten
-" everytime an upgrade of the vim packages is performed.  It is recommended to
-" make changes after sourcing debian.vim since it alters the value of the
-" 'compatible' option.
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
+filetype off
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
+" NeoBundle settings
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-syntax on
-colorscheme elflord
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-"set background=dark
+if has('vim_starting')
+    if &compatible
+        set nocompatible    " Be iMproved
+    endif
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
+    " neobundleを自動インストール
+    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+        echo "install neobundle..."
+        :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+    endif
 
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
-  filetype plugin indent on
+    " Required:
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:Neobundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+NeoBundle 'nanotech/jellybeans.vim'
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+NeoBundleCheck
+
+
+"set t_Co=256
+syntax on
+"colorscheme desert
+"colorscheme elfload
+colorscheme jellybeans
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -47,11 +58,6 @@ set autowrite		" Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
 
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
-
 set scrolloff=3 "スクロール時の余白
 set whichwrap=b,s,h,l,[,],<,> "カーソルキーで行頭／行末を移動可能
 set wildmenu  ":を押すと補完
@@ -60,8 +66,28 @@ set ts=4 sw=4 sts=0 "タブを設定
 set expandtab "tabではなく空白を挿入
 set shiftround  " インデントするときにshiftwidthの倍数に丸める
 set number "行番号
+set tw=0
+set list    "改行とかタブとかを表示
+set listchars=eol:$,tab:>\
+set wrap
 
 "debianでbackspaceが効かなかった
 noremap  
 noremap!  
 set backspace=indent,eol,start
+
+set nowritebackup
+set nobackup
+set noswapfile
+
+" j,kの移動を折り返されたテキストでも自然に移動
+nnoremap j gj
+nnoremap k gk
+
+" Ctrl + hjklでウィンドウ間を移動
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
