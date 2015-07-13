@@ -31,6 +31,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:Neobundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundleLazy 'hynek/vim-python-pep8-indent', {"autoload": {"filetypes": ['python', 'python3']}}
 
 call neobundle#end()
 
