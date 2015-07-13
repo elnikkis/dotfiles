@@ -69,6 +69,7 @@ set tw=0
 set list    "改行とかタブとかを表示
 set listchars=eol:$,tab:>\
 set wrap
+set ambiwidth=double
 
 "debianでbackspaceが効かなかった
 noremap  
