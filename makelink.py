@@ -4,18 +4,20 @@
 dotfilesのdot.*ファイルをホームにコピーするスクリプト
 """
 
-# dot.から始まるファイル一覧を取得
-import glob
-files = glob.glob('dot.*')
-
 # このディレクトリの絶対パスを取得
 import os
-pwd = os.getcwd()
+#pwd = os.getcwd()
+pwd = os.path.abspath(os.path.dirname(__file__))
 home = os.environ['HOME']
+
+# dot.から始まるファイル一覧を取得
+import glob
+files = glob.glob(os.path.join(pwd, 'dot.*'))
 
 # シンボリックリンクを作成
 import subprocess
-for filename in files:
+for file in files:
+    filename = os.path.basename(file)
     src = os.path.join(pwd, filename)
     dst = os.path.join(home, filename[3:])
     op = 'ln -sin ' + src + ' ' + dst
