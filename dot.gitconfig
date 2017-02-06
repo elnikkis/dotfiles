@@ -5,7 +5,9 @@
 	ui = auto
 [core]
 	editor = vim
+	quotepath = false
 [alias]
 	st = status
 	ci = commit
 	co = checkout
+	br = branch
