@@ -1,9 +1,14 @@
 # ~/.bash_profile
 # このファイルがあると ~/.profile は読まれない
 
+export LANG='ja_JP.UTF-8'
+
 # Set PATH for user bin
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/local/bin" ] ; then
+    export PATH="$HOME/local/bin:$PATH"
 fi
 
 # Set XDG config path
