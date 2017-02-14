@@ -12,6 +12,7 @@ if [ -d "$HOME/local/bin" ] ; then
 fi
 
 # Set XDG config path
+mkdir -p "$HOME/.config"
 export XDG_CONFIG_HOME=~/.config
 
 # Execute .bashrc after .bash_profile
