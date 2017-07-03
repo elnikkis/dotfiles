@@ -31,7 +31,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:Neobundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'nanotech/jellybeans.vim'
+
+"NeoBundle 'Shougo/neocomplete'
+
 NeoBundleLazy 'hynek/vim-python-pep8-indent', {"autoload": {"filetypes": ['python', 'python3']}}
+"NeoBundleLazy 'nvie/vim-flake8', {"autoload": {"filetypes": ["python", "python3", "djangohtml"]}}
 
 call neobundle#end()
 
@@ -71,6 +75,7 @@ set list    "改行とかタブとかを表示
 set listchars=eol:$,tab:>\
 set wrap
 set ambiwidth=double
+set modeline
 
 "debianでbackspaceが効かなかった
 noremap  
@@ -91,4 +96,5 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-
+" vim-flake8
+"autocmd BufWritePost *.py call Flake8()
