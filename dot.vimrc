@@ -31,6 +31,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:Neobundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'w0ng/vim-hybrid'
 
 "NeoBundle 'Shougo/neocomplete'
 
@@ -49,7 +50,9 @@ NeoBundleCheck
 syntax on
 "colorscheme desert
 "colorscheme elfload
-colorscheme jellybeans
+"colorscheme jellybeans
+set background=dark
+colorscheme hybrid
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
