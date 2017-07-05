@@ -1,10 +1,10 @@
 filetype off
 
-"dein Scripts-----------------------------
 if &compatible
     set nocompatible  " Be iMproved
 endif
 
+"dein Scripts-----------------------------
 " Required:
 set runtimepath+=/home/nicky/.local/share/dein/repos/github.com/Shougo/dein.vim
 
@@ -14,13 +14,16 @@ if dein#load_state('/home/nicky/.local/share/dein')
 
     " Let dein manage dein
     " Required:
-    call dein#add('/home/nicky/.local/share/dein/repos/github.com/Shougo/dein.vim')
+"    call dein#add('/home/nicky/.local/share/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('Shougo/dein.vim')
 
     " Add or remove your plugins here:
+    call dein#add('w0ng/vim-hybrid')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/deoplete.nvim')
-    call dein#add('zchee/deoplete-jedi')
+
+    call dein#add('zchee/deoplete-jedi', { 'on_ft': ['python', 'python3'] })
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -45,9 +48,33 @@ endif
 " Start deoplete
 let g:deoplete#enable_at_startup = 1
 
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
 
 syntax on
+set background=dark
+colorscheme hybrid
 
+set t_Co=256
 set showcmd
 set showmatch
 set ignorecase
@@ -71,7 +98,6 @@ set splitright
 
 set noerrorbells
 set modeline
-set esckeys
 
 " 移動関連
 set whichwrap=b,s,h,l,[,],<,>
