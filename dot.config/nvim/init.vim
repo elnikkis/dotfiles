@@ -4,17 +4,26 @@ if &compatible
     set nocompatible  " Be iMproved
 endif
 
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 "dein Scripts-----------------------------
 " Required:
-set runtimepath+=/home/nicky/.local/share/dein/repos/github.com/Shougo/dein.vim
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+    call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
+"set runtimepath+=/home/nicky/.local/share/dein/repos/github.com/Shougo/dein.vim
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
 " Required:
-if dein#load_state('/home/nicky/.local/share/dein')
-    call dein#begin('/home/nicky/.local/share/dein')
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
     " Let dein manage dein
     " Required:
-"    call dein#add('/home/nicky/.local/share/dein/repos/github.com/Shougo/dein.vim')
     call dein#add('Shougo/dein.vim')
 
     " Add or remove your plugins here:
