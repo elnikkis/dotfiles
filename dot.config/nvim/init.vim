@@ -125,8 +125,22 @@ endif
 set listchars=eol:$,tab:>\ ,trail:-
 set list
 
+
+" ウィンドウとバッファまわりの設定
+nnoremap t <Nop>
+" ウィンドウの分割
+nnoremap ts :split<Space>
+nnoremap tv :vsplit<Space>
 " Ctrl + hjklでウィンドウ間の移動
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" 開く
+"nnoremap to :edit<Space>
+nnoremap tt :tabnew<Space>
+" タブページの移動
+nnoremap <C-n> gt
+nnoremap <C-p> gT
+" ウィンドウ幅のリセット
+nnoremap t0 <C-w>=
