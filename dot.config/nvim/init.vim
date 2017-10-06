@@ -65,6 +65,9 @@ function! s:my_cr_function() abort
 endfunction
 
 " neosnippetの設定
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
+
+
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
