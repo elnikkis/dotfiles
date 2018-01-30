@@ -11,6 +11,11 @@ if [ -d "$HOME/local/bin" ] ; then
     export PATH="$HOME/local/bin:$PATH"
 fi
 
+# perl setting
+export PERL_CPANM_OPT="--local-lib=~/perl5"
+export PATH="$HOME/perl5/bin:$PATH"
+export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
+
 # Set XDG config path
 export XDG_CONFIG_HOME=~/.config
 

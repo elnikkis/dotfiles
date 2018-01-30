@@ -11,3 +11,5 @@
 	ci = commit
 	co = checkout
 	br = branch
+[fetch]
+	prune = true
