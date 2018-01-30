@@ -1,7 +1,10 @@
 # ~/.bash_profile
 # このファイルがあると ~/.profile は読まれない
 
-export LANG='ja_JP.UTF-8'
+case $TERM in
+    linux) export LANG=C ;;
+    * ) export LANG='ja_JP.UTF-8' ;;
+esac
 
 # Set PATH for user bin
 if [ -d "$HOME/bin" ] ; then
