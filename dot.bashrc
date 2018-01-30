@@ -119,11 +119,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if [ ! -e $PYENV_ROOT ]; then
     # Install pyenv
+    echo 'Installing pyenv ...'
     # ref: https://github.com/yyuu/pyenv-installer
     curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 fi
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-
 
