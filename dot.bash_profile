@@ -47,4 +47,3 @@ export LD_LIBRARY_PATH=/gpfs/work/k131820/gcc-5_5_0/lib64:$LD_LIBRARY_PATH
 if [ -r ~/.bashrc ]; then
     . ~/.bashrc
 fi
-
