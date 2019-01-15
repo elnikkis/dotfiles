@@ -41,6 +41,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# 手動でgitのbash_completionを読み込む
+if [ -r /etc/bash_completion.d/git ] ; then
+    . /etc/bash_completion.d/git
+fi
+
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -113,16 +118,22 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+unamestr=`uname`
+if [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -G'
+    alias grep='grep --color=auto'
+fi
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if [ ! -e $PYENV_ROOT ]; then
-    # Install pyenv
-    echo 'Installing pyenv ...'
-    # ref: https://github.com/yyuu/pyenv-installer
-    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+# wdevではworkにあるpyenvを使う
+if [ -d '/gpfs/work/s143369' ] ; then
+    export PYENV_ROOT="/gpfs/work/s143369/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+else
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
