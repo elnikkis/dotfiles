@@ -33,6 +33,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/deoplete.nvim')
 
     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'python3']})
+    call dein#add('Vimjas/vim-python-pep8-indent', {'on_ft': ['python', 'python3']})
     call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp']})
     call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
     call dein#add('sebastianmarkow/deoplete-rust', {'on_ft': ['rust']})
@@ -67,6 +68,9 @@ function! s:my_cr_function() abort
 endfunction
 
 " neosnippetの設定
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
+
+
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
