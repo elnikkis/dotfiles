@@ -34,6 +34,8 @@ if dein#load_state(s:dein_dir)
 
     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'python3']})
     call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp']})
+    call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
+    call dein#add('sebastianmarkow/deoplete-rust', {'on_ft': ['rust']})
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
