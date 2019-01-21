@@ -4,8 +4,8 @@ if &compatible
     set nocompatible  " Be iMproved
 endif
 
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/home/nicky/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/nicky/.pyenv/versions/neovim3/bin/python'
 
 "dein Scripts-----------------------------
 " Required:
@@ -88,7 +88,7 @@ if has('conceal')
 endif
 
 " Setting of deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
 syntax on
