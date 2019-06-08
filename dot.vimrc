@@ -48,6 +48,7 @@ NeoBundleCheck
 
 "set t_Co=256
 syntax on
+set encoding=utf-8
 "colorscheme desert
 "colorscheme elfload
 "colorscheme jellybeans
