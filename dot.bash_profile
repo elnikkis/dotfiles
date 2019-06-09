@@ -14,6 +14,9 @@ if [ -d "$HOME/local/bin" ] ; then
     export PATH="$HOME/local/bin:$PATH"
 fi
 
+# set default umask
+umask 022
+
 # Set XDG path
 mkdir -p "$HOME/.config"
 export XDG_CONFIG_HOME=~/.config
