@@ -23,14 +23,14 @@ export XDG_CONFIG_HOME=~/.config
 mkdir -p "$HOME/.cache"
 export XDG_CACHE_HOME=~/.cache
 
-# Execute .bashrc after .bash_profile
-if [ -r ~/.bashrc ]; then
-    . ~/.bashrc
-fi
-
 # for Rust
 if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 export LESSCHARSET=utf-8
+
+# Execute .bashrc after .bash_profile
+if [ -r ~/.bashrc ]; then
+    . ~/.bashrc
+fi
