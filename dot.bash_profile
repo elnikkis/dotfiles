@@ -13,6 +13,9 @@ fi
 if [ -d "$HOME/local/bin" ] ; then
     export PATH="$HOME/local/bin:$PATH"
 fi
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # set default umask
 umask 022
