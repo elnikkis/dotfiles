@@ -95,6 +95,11 @@ endif
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
+" Setting for deoplete-rust
+let g:deoplete#sources#rust#racer_binary='/home/nicky/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/usr/local/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1 " Show duplicate matches
+
 syntax on
 set background=dark
 colorscheme hybrid
