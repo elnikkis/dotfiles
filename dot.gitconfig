@@ -6,14 +6,18 @@
 [core]
 	editor = vim
 	quotepath = false
+	autocrlf = false
 [alias]
 	st = status
 	ci = commit
 	co = checkout
 	br = branch
+	ldiff = difftool -y -t latex
 [push]
-	default = matching
+	default = simple
 [fetch]
 	prune = true
 [bash]
 	showDirtyState = true
+[difftool.latex]
+	cmd = latexdiff -e utf8 -t INVISIBLE -s COLOR "$LOCAL" "$REMOTE"
