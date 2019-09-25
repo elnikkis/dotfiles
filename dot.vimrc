@@ -38,6 +38,8 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundleLazy 'hynek/vim-python-pep8-indent', {"autoload": {"filetypes": ['python', 'python3']}}
 "NeoBundleLazy 'nvie/vim-flake8', {"autoload": {"filetypes": ["python", "python3", "djangohtml"]}}
 
+NeoBundleLazy 'rust-lang/rust.vim', {"autoload": {"filetypes": ['rust']}}
+
 call neobundle#end()
 
 " Required:
