@@ -135,14 +135,11 @@ fi
 
 # pyenv
 # wdevではworkにあるpyenvを使う
-if [ -d '/gpfs/work/s143369' ] ; then
-    export PYENV_ROOT="/gpfs/work/s143369/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-else
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+#if [[ -d "/work/s143369/.pyenv" ]] && [[ $(hostname) =~ ^xdev[0-9]{2} ]] ; then
+#    export PYENV_ROOT="/work/s143369/.pyenv"
+#else
+#    export PYENV_ROOT="$HOME/.pyenv"
+#fi
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
