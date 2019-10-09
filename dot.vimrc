@@ -39,6 +39,7 @@ NeoBundleLazy 'hynek/vim-python-pep8-indent', {"autoload": {"filetypes": ['pytho
 "NeoBundleLazy 'nvie/vim-flake8', {"autoload": {"filetypes": ["python", "python3", "djangohtml"]}}
 
 NeoBundleLazy 'rust-lang/rust.vim', {"autoload": {"filetypes": ['rust']}}
+NeoBundleLazy 'LukeGoodsell/nextflow-vim', {"autoload": {"filetypes": ['nextflow']}}
 
 call neobundle#end()
 
