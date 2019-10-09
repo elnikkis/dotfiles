@@ -15,6 +15,6 @@ alias qdelq='bash /work/my016/tool/qdel.sh queue'
 
 alias tmux='LD_LIBRARY_PATH=${HOME}/local/lib tmux'
 
-if [ -e /gpfs/work/s143369/twitter-research/main/sets_operation.py ]; then
-    alias setop='python /gpfs/work/s143369/twitter-research/main/sets_operation.py'
-fi
+#if [ -e /gpfs/work/s143369/twitter-research/main/sets_operation.py ]; then
+#    alias setop='python /gpfs/work/s143369/twitter-research/main/sets_operation.py'
+#fi

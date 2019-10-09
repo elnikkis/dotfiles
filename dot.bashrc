@@ -148,7 +148,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 # pyenv
-# wdevではworkにあるpyenvを使う
+# xdevではworkにあるpyenvを使う
 #if [[ -d "/work/s143369/.pyenv" ]] && [[ $(hostname) =~ ^xdev[0-9]{2} ]] ; then
 #    export PYENV_ROOT="/work/s143369/.pyenv"
 #else
