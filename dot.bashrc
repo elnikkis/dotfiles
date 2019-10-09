@@ -28,6 +28,20 @@ PROMPT_COMMAND='share_history'
 HISTSIZE=100000
 HISTFILESIZE=200000
 
+# History filter using peco
+peco_select_history() {
+    line=$(HISTTIMEFORMAT= history | tac | LC_ALL=C sort -uk2 | LC_ALL=C sort -unrk1 | sed -e 's/^\s*[0-9]\+\s\+//' | peco --on-cancel 'error' --query "$READLINE_LINE")
+    if [ $? -eq 0 ]; then
+        READLINE_LINE="$line"
+        READLINE_POINT=${#line}
+        echo "exit with 0"
+    fi
+    unset line
+}
+if command -v peco >/dev/null 2>&1 ; then
+    bind -x '"\C-r": peco_select_history'
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
