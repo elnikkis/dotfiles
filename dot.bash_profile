@@ -24,11 +24,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# perl setting
-#export PERL_CPANM_OPT="--local-lib=~/perl5"
-#export PATH="$HOME/perl5/bin:$PATH"
-#export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
-# set default umask
 umask 022
 
 # Set XDG path
@@ -37,18 +32,11 @@ export XDG_CONFIG_HOME=~/.config
 mkdir -p "$HOME/.cache"
 export XDG_CACHE_HOME=~/.cache
 
-# digdag setting
-export PATH="$HOME/bin:$PATH"
 # for Rust
 if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-# dotnet runtime
-#export PATH=/gpfs/work/k131820/dotnet:$PATH
-#export PATH=/gpfs/work/k131820/gcc-5_5_0/bin:$PATH
-#export LD_LIBRARY_PATH=/gpfs/work/k131820/gcc-5_5_0/lib:$LD_LIBRARY_PATH
-#export LD_LIBRARY_PATH=/gpfs/work/k131820/gcc-5_5_0/lib64:$LD_LIBRARY_PATH
 export LESSCHARSET=utf-8
 
 # Execute .bashrc after .bash_profile
