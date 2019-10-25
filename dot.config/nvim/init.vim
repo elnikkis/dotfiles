@@ -31,12 +31,14 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/deoplete.nvim')
+    "call dein#add('thaerkh/vim-indentguides')
 
     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'python3']})
     call dein#add('Vimjas/vim-python-pep8-indent', {'on_ft': ['python', 'python3']})
     call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp']})
     call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
     call dein#add('sebastianmarkow/deoplete-rust', {'on_ft': ['rust']})
+    call dein#add('chase/vim-ansible-yaml', {'on_ft': ['ansible']})
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -70,7 +72,6 @@ endfunction
 " neosnippetの設定
 let g:neosnippet#snippets_directory = '~/.vim/snippets'
 
-
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -94,6 +95,11 @@ endif
 " Setting of deoplete-clang
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+
+
+" Setting for ansible
+au BufRead,BufNewFile */playbooks/*.yml set filetype=ansible
+
 
 syntax on
 set background=dark
