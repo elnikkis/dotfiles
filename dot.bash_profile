@@ -1,4 +1,5 @@
 # ~/.bash_profile
+# In WSL, .bash_profile is not executed
 # このファイルがあると ~/.profile は読まれない
 
 case $TERM in
@@ -34,6 +35,6 @@ fi
 export LESSCHARSET=utf-8
 
 # Execute .bashrc after .bash_profile
-if [ -r ~/.bashrc ]; then
-    . ~/.bashrc
-fi
+#if [ -r ~/.bashrc ]; then
+#    . ~/.bashrc
+#fi

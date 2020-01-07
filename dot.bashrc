@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+if grep -q Microsoft /proc/version; then
+    source ~/.bash_profile
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -144,14 +148,16 @@ if ! shopt -oq posix; then
 fi
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if [ ! -e $PYENV_ROOT ]; then
-    # Install pyenv
-    echo 'Installing pyenv ...'
-    # ref: https://github.com/yyuu/pyenv-installer
-    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-fi
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#if [ ! -e $PYENV_ROOT ]; then
+#    # Install pyenv
+#    echo 'Installing pyenv ...'
+#    # ref: https://github.com/yyuu/pyenv-installer
+#    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+#fi
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
+# create virtualenv in the project dir
+export PIPENV_VENV_IN_PROJECT=1
