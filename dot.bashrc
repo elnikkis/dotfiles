@@ -149,11 +149,11 @@ fi
 
 # pyenv
 # xdevではworkにあるpyenvを使う
-#if [[ -d "/work/s143369/.pyenv" ]] && [[ $(hostname) =~ ^xdev[0-9]{2} ]] ; then
-#    export PYENV_ROOT="/work/s143369/.pyenv"
-#else
-#    export PYENV_ROOT="$HOME/.pyenv"
-#fi
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+if [[ -d "/work/s143369/.pyenv" ]] && ( [[ $(hostname) =~ ^xdev[0-9]{2} ]] || [[  $(hostname) =~ ^xsnd[0-9]{2} ]] ) ; then
+    export PYENV_ROOT="/work/s143369/.pyenv"
+else
+    export PYENV_ROOT="$HOME/.pyenv"
+fi
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

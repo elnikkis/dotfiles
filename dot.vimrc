@@ -40,8 +40,13 @@ NeoBundleLazy 'hynek/vim-python-pep8-indent', {"autoload": {"filetypes": ['pytho
 
 NeoBundleLazy 'rust-lang/rust.vim', {"autoload": {"filetypes": ['rust']}}
 NeoBundleLazy 'LukeGoodsell/nextflow-vim', {"autoload": {"filetypes": ['nextflow']}}
+NeoBundleLazy 'ShaiberAlon/snakemake-vim', {"autoload": {"filetypes": ['snakemake']}}
 
 call neobundle#end()
+
+" for snakemake
+au! BufRead,BufNewFile Snakefile,*.snakefile    setfiletype snakemake
+
 
 " Required:
 filetype plugin indent on

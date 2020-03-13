@@ -42,6 +42,12 @@ export LESSCHARSET=utf-8
 
 export PIPENV_VENV_IN_PROJECT=true
 
+# Interactive jobのときはwork dirへ移動する
+if [ -n "$PBS_O_WORKDIR" -a "$PBS_ENVIRONMENT" = "PBS_INTERACTIVE" ]; then
+    cd "$PBS_O_WORKDIR"
+fi
+
+
 # Execute .bashrc after .bash_profile
 if [ -r ~/.bashrc ]; then
     . ~/.bashrc
