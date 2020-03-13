@@ -34,7 +34,7 @@ if dein#load_state(s:dein_dir)
     "call dein#add('thaerkh/vim-indentguides')
 
     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'python3']})
-    call dein#add('Vimjas/vim-python-pep8-indent', {'on_ft': ['python', 'python3']})
+    call dein#add('Vimjas/vim-python-pep8-indent', {'on_ft': ['python', 'python3', 'snakemake']})
     call dein#add('zchee/deoplete-clang', {'on_ft': ['c', 'cpp']})
     call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
     call dein#add('sebastianmarkow/deoplete-rust', {'on_ft': ['rust']})
