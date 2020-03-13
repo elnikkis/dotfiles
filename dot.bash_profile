@@ -13,7 +13,6 @@ else
     done
 fi
 
-
 # Set PATH for user bin
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
@@ -25,6 +24,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# set default umask
 umask 022
 
 # Set XDG path
@@ -46,7 +46,6 @@ export PIPENV_VENV_IN_PROJECT=true
 if [ -n "$PBS_O_WORKDIR" -a "$PBS_ENVIRONMENT" = "PBS_INTERACTIVE" ]; then
     cd "$PBS_O_WORKDIR"
 fi
-
 
 # Execute .bashrc after .bash_profile
 if [ -r ~/.bashrc ]; then
