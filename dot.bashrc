@@ -138,24 +138,6 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     alias grep='grep --color=auto'
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-#if ! shopt -oq posix; then
-#  if [ -f /usr/share/bash-completion/bash_completion ]; then
-#    . /usr/share/bash-completion/bash_completion
-#  elif [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#  fi
-#fi
-
-## 手動でgitのbash_completionを読み込む
-#if [ -r /etc/bash_completion.d/git ] ; then
-#    . /etc/bash_completion.d/git
-#fi
-
-
-
 # pyenv
 # xdevではworkにあるpyenvを使う
 if [[ -d "/work/s143369/.pyenv" ]] && ( [[ $(hostname) =~ ^xdev[0-9]{2} ]] || [[  $(hostname) =~ ^xsnd[0-9]{2} ]] ) ; then
