@@ -146,7 +146,8 @@ endif
 set listchars=eol:$,tab:>\ ,trail:-
 set list
 
-
+";も:にする
+nnoremap ; :
 " ウィンドウとバッファまわりの設定
 nnoremap t <Nop>
 " ウィンドウの分割
