@@ -40,11 +40,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
     call dein#add('sebastianmarkow/deoplete-rust', {'on_ft': ['rust']})
     call dein#add('chase/vim-ansible-yaml', {'on_ft': ['ansible', 'yaml']})
-    call dein#add('LukeGoodsell/nextflow-vim', {'on_ft': ['nextflow']})
     call dein#add('ShaiberAlon/snakemake-vim', {'on_ft': ['snakemake']})
-
-    " You can specify revision/branch/tag.
-    call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
     " Required:
     call dein#end()
