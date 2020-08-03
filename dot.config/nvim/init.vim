@@ -32,6 +32,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/deoplete.nvim')
     "call dein#add('thaerkh/vim-indentguides')
+    call dein#add('tyru/caw.vim')
 
     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'python3']})
     call dein#add('Vimjas/vim-python-pep8-indent', {'on_ft': ['python', 'python3', 'snakemake']})
@@ -148,6 +149,7 @@ set list
 
 ";も:にする
 nnoremap ; :
+
 " ウィンドウとバッファまわりの設定
 nnoremap t <Nop>
 " ウィンドウの分割
