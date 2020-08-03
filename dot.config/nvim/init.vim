@@ -114,7 +114,8 @@ set showmode
 set ruler
 set number
 set ambiwidth=double
-set nofoldenable "折り畳み無効
+"折り畳み無効
+set nofoldenable
 
 " タブ関連
 set expandtab
@@ -134,6 +135,10 @@ set modeline
 set whichwrap=b,s,h,l,[,],<,>
 nnoremap j gj
 nnoremap k gk
+nnoremap J 10j
+nnoremap K 10k
+nnoremap H 0
+nnoremap L $
 
 " スクロール行数の設定
 if !&scrolloff
