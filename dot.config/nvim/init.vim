@@ -58,6 +58,8 @@ endif
 
 "End dein Scripts-------------------------
 
+" Disable tex symbol relpacing
+let g:tex_conceal = ""
 
 " Start deoplete
 let g:deoplete#enable_at_startup = 1
@@ -154,6 +156,7 @@ set list
 
 ";も:にする
 nnoremap ; :
+vnoremap ; :
 
 " ウィンドウとバッファまわりの設定
 nnoremap t <Nop>
