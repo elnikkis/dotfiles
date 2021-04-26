@@ -108,5 +108,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" ; -> :
+nnoremap ; :
+
 " vim-flake8
 "autocmd BufWritePost *.py call Flake8()

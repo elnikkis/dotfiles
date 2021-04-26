@@ -32,6 +32,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/deoplete.nvim')
     "call dein#add('thaerkh/vim-indentguides')
+    call dein#add('tyru/caw.vim')
 
     call dein#add('zchee/deoplete-jedi', {'on_ft': ['python', 'python3']})
     call dein#add('Vimjas/vim-python-pep8-indent', {'on_ft': ['python', 'python3', 'snakemake']})
@@ -39,11 +40,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
     call dein#add('sebastianmarkow/deoplete-rust', {'on_ft': ['rust']})
     call dein#add('chase/vim-ansible-yaml', {'on_ft': ['ansible', 'yaml']})
-    call dein#add('LukeGoodsell/nextflow-vim', {'on_ft': ['nextflow']})
     call dein#add('ShaiberAlon/snakemake-vim', {'on_ft': ['snakemake']})
-
-    " You can specify revision/branch/tag.
-    call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
     " Required:
     call dein#end()
@@ -61,6 +58,8 @@ endif
 
 "End dein Scripts-------------------------
 
+" Disable tex symbol relpacing
+let g:tex_conceal = ""
 
 " Start deoplete
 let g:deoplete#enable_at_startup = 1
@@ -98,6 +97,10 @@ endif
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
+" Setting for deoplete-rust
+"let g:deoplete#sources#rust#racer_binary='/home/hironaka15/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/usr/local/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
 
 syntax on
 set background=dark
@@ -113,7 +116,8 @@ set showmode
 set ruler
 set number
 set ambiwidth=double
-set nofoldenable "折り畳み無効
+"折り畳み無効
+set nofoldenable
 
 " タブ関連
 set expandtab
@@ -133,6 +137,10 @@ set modeline
 set whichwrap=b,s,h,l,[,],<,>
 nnoremap j gj
 nnoremap k gk
+nnoremap J 10j
+nnoremap K 10k
+nnoremap H 0
+nnoremap L $
 
 " スクロール行数の設定
 if !&scrolloff
@@ -146,6 +154,9 @@ endif
 set listchars=eol:$,tab:>\ ,trail:-
 set list
 
+";も:にする
+nnoremap ; :
+vnoremap ; :
 
 " ウィンドウとバッファまわりの設定
 nnoremap t <Nop>

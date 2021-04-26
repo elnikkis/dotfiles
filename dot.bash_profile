@@ -33,14 +33,21 @@ export XDG_CONFIG_HOME=~/.config
 mkdir -p "$HOME/.cache"
 export XDG_CACHE_HOME=~/.cache
 
+# pyenv settings
+# xdevではworkにあるpyenvを使う
+if [[ -d "/work/sh013/.pyenv" ]] && ( [[ $(hostname) =~ ^xdev[0-9]{2} ]] || [[  $(hostname) =~ ^xsnd[0-9]{2} ]] ) ; then
+    export PYENV_ROOT="/work/sh013/.pyenv"
+else
+    export PYENV_ROOT="$HOME/.pyenv"
+fi
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 # for Rust
 if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 export LESSCHARSET=utf-8
-
-export PIPENV_VENV_IN_PROJECT=true
 
 # Interactive jobのときはwork dirへ移動する
 if [ -n "$PBS_O_WORKDIR" -a "$PBS_ENVIRONMENT" = "PBS_INTERACTIVE" ]; then
@@ -51,3 +58,4 @@ fi
 if [ -r ~/.bashrc ]; then
     . ~/.bashrc
 fi
+
