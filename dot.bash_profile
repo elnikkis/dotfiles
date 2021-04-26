@@ -36,7 +36,7 @@ export XDG_CACHE_HOME=~/.cache
 # pyenv settings
 # xdevではworkにあるpyenvを使う
 if [[ $(hostname) =~ ^xdev[0-9]{2} ]] || [[  $(hostname) =~ ^xsnd[0-9]{2} ]] ; then
-    export PYENV_ROOT="/work/sh013/.pyenv"
+    export PYENV_ROOT="/work/$USER/.pyenv"
 else
     export PYENV_ROOT="$HOME/.pyenv"
 fi
