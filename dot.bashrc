@@ -146,7 +146,9 @@ fi
 # pyenv
 if [ ! -e $PYENV_ROOT ]; then
     echo "Do you wish to install pyenv to $PYENV_ROOT?"
+    PS3="Enter a number: "
     select yn in "Yes" "No"; do
+        echo "$yn"
         case $yn in
             Yes )
                 # Install pyenv
