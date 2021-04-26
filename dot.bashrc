@@ -144,14 +144,22 @@ if ! shopt -oq posix; then
 fi
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 if [ ! -e $PYENV_ROOT ]; then
-    # Install pyenv
-    echo 'Installing pyenv ...'
-    # ref: https://github.com/yyuu/pyenv-installer
-    curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    echo "Do you wish to install pyenv to $PYENV_ROOT?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes )
+                # Install pyenv
+                echo 'Installing pyenv ...'
+                # ref: https://github.com/yyuu/pyenv-installer
+                curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+                break;;
+            No ) break;;
+        esac
+    done
 fi
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
