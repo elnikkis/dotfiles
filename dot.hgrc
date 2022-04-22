@@ -1,7 +1,0 @@
-[ui]
-username = nicky(@elnikkis) <noahluces@gmail.com>
-ssh = ssh -C
-ignore = ~/.hgignore
-
-[extensions]
-color = 
