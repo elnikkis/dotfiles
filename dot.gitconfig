@@ -17,6 +17,8 @@
 	ldiff = difftool -y -t latex
 [push]
 	default = simple
+[pull]
+	rebase = false
 [fetch]
 	prune = true
 [bash]
