@@ -58,6 +58,9 @@ endif
 
 "End dein Scripts-------------------------
 
+" Enable rst style
+let g:rst_style = 1
+
 " Disable tex symbol relpacing
 let g:tex_conceal = ""
 
