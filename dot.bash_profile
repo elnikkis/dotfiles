@@ -21,15 +21,26 @@ fi
 umask 022
 
 # Set XDG path
-mkdir -p "$HOME/.config"
-export XDG_CONFIG_HOME=~/.config
-mkdir -p "$HOME/.cache"
-export XDG_CACHE_HOME=~/.cache
+export XDG_CONFIG_HOME="$HOME/.config"
+mkdir -p $XDG_CONFIG_HOME
+export XDG_CACHE_HOME="$HOME/.cache"
+mkdir -p $XDG_CACHE_HOME
+export XDG_DATA_HOME="$HOME/.local/share"
+mkdir -p $XDG_DATA_HOME
 
 # for Rust
 if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+if [ -d "$GEM_HOME/gems/bin" ] ; then
+    export PATH="$HOME/gems/bin:$PATH"
+fi
+
+# for deno
+export DENO_INSTALL="$HOME/.local"
 
 export LESSCHARSET=utf-8
 
