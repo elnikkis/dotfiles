@@ -13,12 +13,20 @@
 	ci = commit
 	co = checkout
 	br = branch
+	sw = switch
 	ldiff = difftool -y -t latex
 [push]
 	default = simple
+[pull]
+	rebase = false
 [fetch]
 	prune = true
 [bash]
 	showDirtyState = true
 [difftool.latex]
 	cmd = latexdiff -e utf8 -t INVISIBLE -s COLOR "$LOCAL" "$REMOTE"
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false

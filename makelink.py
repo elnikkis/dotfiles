@@ -1,7 +1,7 @@
-# coding:utf-8
+# -*- coding: utf-8 -*-
 
 """
-dotfilesのdot.*ファイルをホームにコピーするスクリプト
+dotfilesのdot.*ファイルを$HOMEにコピーするスクリプト
 """
 
 import os
@@ -12,14 +12,14 @@ import subprocess
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', dest='force', help='Force make symlinks', action='store_true')
+    parser.add_argument('-f', dest='force', help='Force create symlinks', action='store_true')
     return parser.parse_args()
 
 
 if __name__ == '__main__':
     args = parse_args()
 
-    # このディレクトリの絶対パスを取得
+    # 現在のディレクトリの絶対パスを取得
     pwd = os.path.abspath(os.path.dirname(__file__))
     home = os.environ['HOME']
 
@@ -35,9 +35,8 @@ if __name__ == '__main__':
     for file in files:
         filename = os.path.basename(file)
         src = os.path.join(pwd, filename)
-        dst = os.path.join(home, filename[3:])
+        dst = os.path.join(home, filename[3:])  # Remove 'dot.'
         cmd = ['ln', option, src, dst]
-        #op = 'ln -sin ' + src + ' ' + dst
         print(' '.join(cmd))
         subprocess.call(cmd)
 

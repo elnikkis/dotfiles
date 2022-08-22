@@ -4,7 +4,7 @@ if &compatible
     set nocompatible  " Be iMproved
 endif
 
-let g:python_host_prog = '/usr/bin/python2'
+"let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
 "dein Scripts-----------------------------
@@ -58,6 +58,9 @@ endif
 
 "End dein Scripts-------------------------
 
+" Enable rst style
+let g:rst_style = 1
+
 " Disable tex symbol relpacing
 let g:tex_conceal = ""
 
@@ -89,9 +92,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
 
 " Setting of deoplete-clang
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
