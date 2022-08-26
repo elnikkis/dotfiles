@@ -1,0 +1,79 @@
+# for easy comments
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+on_event = 'CursorHold'
+
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['denops.vim', 'pum.vim']
+on_event = ['InsertEnter', 'CursorHold']
+hook_source = '''
+" Setting sources and filters
+call ddc#custom#patch_global('sources', ['around'])
+call ddc#custom#patch_global('sourceOptions', {
+            \ '_': {
+            \   'matchers': ['matcher_head', 'matcher_length'],
+            \   'sorters': ['sorter_rank'],
+            \ },
+            \ 'around': {
+            \   'mark': 'A',
+            \   'matchers': ['matcher_head', 'matcher_length'],
+            \ },
+            \ 'nvim-lsp': {
+            \   'mark': 'lsp',
+            \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+            \ })
+if has('nvim')
+    call ddc#custom#patch_filetype(
+                \ ['python'], 'sources',
+                \ ['nvim-lsp', 'around']
+                \ )
+" pum.vim
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
+" keymap
+inoremap <silent><expr> <TAB>
+      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#manual_complete()
+inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+
+call ddc#enable()
+endif
+'''
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+hook_source = '''
+call pum#set_option('user_complete', v:true)
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-matcher_length'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_source = 'nvim-lspconfig'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+on_ft = ['python']
+if = 'has("nvim")'
+depends = 'ddc.vim'
+hook_source = '''
+lua << EOF
+require'lspconfig'.pylsp.setup{}
+EOF
+'''

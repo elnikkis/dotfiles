@@ -18,12 +18,15 @@ if !isdirectory(s:dein_repo_dir)
 endif
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
-let s:dein_toml = '~/.config/nvim/dein.toml'
+let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
+let s:dein_toml = s:config_home . '/nvim/dein.toml'
+let s:dein_lazy_toml = s:config_home . '/nvim/deinlazy.toml'
 
 " Required:
 if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir, [expand('<sfile>'), s:dein_toml])
+    call dein#begin(s:dein_dir, [expand('<sfile>'), s:dein_toml, s:dein_lazy_toml])
     call dein#load_toml(s:dein_toml, {'lazy': 0})
+    call dein#load_toml(s:dein_lazy_toml, {'lazy': 1})
     call dein#end()
     call dein#save_state()
 endif
@@ -76,10 +79,10 @@ set modeline
 set whichwrap=b,s,h,l,[,],<,>
 nnoremap j gj
 nnoremap k gk
-nnoremap J 10j
-nnoremap K 10k
-nnoremap H 0
-nnoremap L $
+" nnoremap J 10j
+" nnoremap K 10k
+" nnoremap H 0
+" nnoremap L $
 
 " スクロール行数の設定
 if !&scrolloff

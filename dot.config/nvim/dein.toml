@@ -9,86 +9,6 @@ autocmd VimEnter * ++nested colorscheme hybrid
 '''
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-on_event = 'CursorHold'
-
-[[plugins]]
-repo = 'Shougo/ddc.vim'
-depends = ['denops.vim', 'pum.vim']
-on_event = ['InsertEnter', 'CursorHold']
-hook_source = '''
-" Setting sources and filters
-call ddc#custom#patch_global('sources', ['around'])
-call ddc#custom#patch_global('sourceOptions', {
-            \ '_': {
-            \   'matchers': ['matcher_head', 'matcher_length'],
-            \   'sorters': ['sorter_rank'],
-            \ },
-            \ 'around': {
-            \   'mark': 'A',
-            \   'matchers': ['matcher_head', 'matcher_length'],
-            \ },
-            \ 'nvim-lsp': {
-            \   'mark': 'lsp',
-            \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
-            \ })
-if has('nvim')
-    call ddc#custom#patch_filetype(
-                \ ['python'], 'sources',
-                \ ['nvim-lsp', 'around']
-                \ )
-" pum.vim
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
-" keymap
-inoremap <silent><expr> <TAB>
-      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-      \ '<TAB>' : ddc#manual_complete()
-inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
-inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-
-call ddc#enable()
-endif
-'''
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-hook_source = '''
-call pum#set_option('user_complete', v:true)
-'''
-
-[[plugins]]
-repo = 'Shougo/ddc-around'
-on_source = 'ddc.vim'
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-on_source = 'ddc.vim'
-[[plugins]]
-repo = 'Shougo/ddc-matcher_length'
-on_source = 'ddc.vim'
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-on_source = 'ddc.vim'
-[[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
-on_source = 'nvim-lspconfig'
-
-[[plugins]]
-repo = 'neovim/nvim-lspconfig'
-on_ft = ['python']
-if = 'has("nvim")'
-depends = 'ddc.vim'
-hook_source = '''
-lua << EOF
-require'lspconfig'.pylsp.setup{}
-EOF
-'''
-
-# for easy comments
-[[plugins]]
 repo = 'tyru/caw.vim'
 
 # context filetype
@@ -98,43 +18,6 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
-
-# [[plugins]]
-# repo = 'prabirshrestha/vim-lsp'
-# hook_add = '''
-# function! s:on_lsp_buffer_enabled() abort
-#     setlocal omnifunc=lsp#complete
-#     setlocal signcolumn=yes
-#     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-#     nmap <buffer> gd <plug>(lsp-definition)
-#     nmap <buffer> gr <plug>(lsp-references)
-#     nmap <buffer> gi <plug>(lsp-implementation)
-#     nmap <buffer> gt <plug>(lsp-type-definition)
-#     nmap <buffer> <leader>rn <plug>(lsp-rename)
-#     nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-#     nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-#     nmap <buffer> K <plug>(lsp-hover)
-# 
-#     let g:lsp_diagnostics_enabled = 0
-#     let g:lsp_signs_enabled = 1
-#     let g:lsp_diagnostics_echo_cursor = 1
-#     let g:lsp_format_sync_timeout = 1000
-#     " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-# 
-#     " refer to doc to add more commands
-# endfunction
-# 
-# augroup lsp_install
-#     au!
-#     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-#     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-# augroup END
-# '''
-
-# [[plugins]]
-# repo = 'mattn/vim-lsp-settings'
-# depends = ['vim-lsp']
-
 
 [[plugins]]
 repo = 'cespare/vim-toml'
@@ -159,4 +42,3 @@ on_ft = ['ansible', 'yaml']
 [[plugins]]
 repo = 'ShaiberAlon/snakemake-vim'
 on_ft = ['snakemake']
-
