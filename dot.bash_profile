@@ -49,8 +49,8 @@ fi
 
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
-if [ -d "$GEM_HOME/gems/bin" ] ; then
-    export PATH="$HOME/gems/bin:$PATH"
+if [ -d "$GEM_HOME/bin" ] ; then
+    export PATH="$GEM_HOME/bin:$PATH"
 fi
 
 # for deno
