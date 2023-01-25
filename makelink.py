@@ -22,6 +22,8 @@ if __name__ == '__main__':
     # 現在のディレクトリの絶対パスを取得
     pwd = os.path.abspath(os.path.dirname(__file__))
     home = os.environ['HOME']
+    # HOMEから現在のディレクトリまでの相対パスを取得
+    relative_pwd = os.path.relpath(pwd, start=home)
 
     # dot.から始まるファイル一覧を取得
     files = glob.glob(os.path.join(pwd, 'dot.*'))
@@ -34,7 +36,7 @@ if __name__ == '__main__':
     # シンボリックリンクを作成
     for file in files:
         filename = os.path.basename(file)
-        src = os.path.join(pwd, filename)
+        src = os.path.join(relative_pwd, filename)
         dst = os.path.join(home, filename[3:])  # Remove 'dot.'
         cmd = ['ln', option, src, dst]
         print(' '.join(cmd))
