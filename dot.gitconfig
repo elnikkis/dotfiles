@@ -15,6 +15,7 @@
 	br = branch
 	sw = switch
 	ldiff = difftool -y -t latex
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [push]
 	default = simple
 [pull]
@@ -24,7 +25,7 @@
 [bash]
 	showDirtyState = true
 [difftool.latex]
-	cmd = latexdiff -e utf8 -t INVISIBLE -s COLOR "$LOCAL" "$REMOTE"
+	cmd = latexdiff -e utf8 --flatten -t INVISIBLE -s COLOR "$LOCAL" "$REMOTE"
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
