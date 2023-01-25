@@ -1,0 +1,44 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+hook_add = '''
+set background=dark
+autocmd VimEnter * ++nested colorscheme hybrid
+'''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+
+# context filetype
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo = 'rbtnn/vim-vimscript_indentexpr'
+on_ft = ['vim']
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft = ['python', 'python3', 'snakemake']
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
+
+[[plugins]]
+repo = 'chase/vim-ansible-yaml'
+on_ft = ['ansible', 'yaml']
+
+[[plugins]]
+repo = 'ShaiberAlon/snakemake-vim'
+on_ft = ['snakemake']
