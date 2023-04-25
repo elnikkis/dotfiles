@@ -23,7 +23,7 @@ call ddc#custom#patch_global('sourceOptions', {
             \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
             \ })
 if has('nvim')
-    call ddc#custom#patch_filetype(['python', 'c', 'cpp'], 'sources', ['nvim-lsp', 'around'])
+    call ddc#custom#patch_filetype(['python', 'c', 'cpp', 'java'], 'sources', ['nvim-lsp', 'around'])
 
 " pum.vim
 call ddc#custom#patch_global('autoCompleteEvents', [
@@ -115,6 +115,9 @@ require('lspconfig')['pylsp'].setup{
 require'lspconfig'.clangd.setup{
     on_attach = on_attach,
     cmd = {'clangd-11'},
+}
+require'lspconfig'.java_language_server.setup{
+    on_attach = on_atach,
 }
 '''
 
