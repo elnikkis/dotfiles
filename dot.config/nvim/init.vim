@@ -28,6 +28,7 @@ if dein#load_state(s:dein_dir)
     call dein#load_toml(s:dein_toml, {'lazy': 0})
     call dein#load_toml(s:dein_lazy_toml, {'lazy': 1})
     call dein#end()
+    call dein#call_hook('source')
     call dein#save_state()
 endif
 

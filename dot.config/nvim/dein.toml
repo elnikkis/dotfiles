@@ -42,3 +42,18 @@ on_ft = ['ansible', 'yaml']
 [[plugins]]
 repo = 'ShaiberAlon/snakemake-vim'
 on_ft = ['snakemake']
+
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+if = 'has("nvim")'
+lua_source = '''
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+'''
