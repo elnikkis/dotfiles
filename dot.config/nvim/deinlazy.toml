@@ -82,7 +82,7 @@ depends = ['ddc.vim', 'mason.nvim', 'mason-lspconfig.nvim']
 lua_source = '''
 -- Setup language servers
 local lspconfig = require('lspconfig')
-lspconfig.pylsp.setup {}
+lspconfig.pyright.setup {}
 lspconfig.clangd.setup {
     cmd = {'clangd-11'},
 }
@@ -133,7 +133,7 @@ on_ft = ['python', 'c', 'cpp', 'java']
 depends = 'mason.nvim'
 lua_source = '''
 require("mason-lspconfig").setup {
-    ensure_installed = {'pylsp', 'clangd', 'jdtls'},
+    ensure_installed = {'pyright', 'clangd', 'jdtls'},
     automatic_installation = true,
 }
 '''
