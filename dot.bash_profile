@@ -58,6 +58,11 @@ export DENO_INSTALL="$HOME/.local"
 
 export LESSCHARSET=utf-8
 
+# Set ssh-agent
+if [ -e "/mnt/c/Users/shiori/.ssh/agent.sock" ]; then
+    export SSH_AUTH_SOCK=/mnt/c/Users/shiori/.ssh/agent.sock
+fi
+
 # Execute .bashrc after .bash_profile
 if [ -r ~/.bashrc ]; then
     . ~/.bashrc
