@@ -58,9 +58,19 @@ export DENO_INSTALL="$HOME/.local"
 
 export LESSCHARSET=utf-8
 
-# Set ssh-agent
+# Set ssh-agent for WSL
 if [ -e "/mnt/c/Users/shiori/.ssh/agent.sock" ]; then
     export SSH_AUTH_SOCK=/mnt/c/Users/shiori/.ssh/agent.sock
+# Set symbolic link ssh-agent if exists
+elif [ -d "$HOME/.ssh" ]; then
+    if [ -S "$SSH_AUTH_SOCK" ]; then
+        agent="$HOME/.ssh/agent"
+        case $SSH_AUTH_SOCK in /tmp/*/agent.[0-9]*)
+            ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
+        esac
+    # elif [ -S $agent ]; then
+    #     export SSH_AUTH_SOCK=$agent
+    fi
 fi
 
 # Execute .bashrc after .bash_profile
