@@ -18,12 +18,21 @@ call ddc#custom#patch_global('sourceOptions', {
             \ 'around': {
             \   'mark': 'A',
             \ },
-            \ 'nvim-lsp': {
+            \ 'lsp': {
             \   'mark': 'lsp',
             \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
             \ })
+call ddc#custom#patch_global('sourceParams', #{
+            \   lsp: #{
+            \     snippetEngine: denops#callback#register({
+            \           body -> vsnip#anonymous(body)
+            \     }),
+            \     enableResolveItem: v:true,
+            \     enableAdditionalTextEdit: v:true,
+            \   }
+            \ })
 if has('nvim')
-    call ddc#custom#patch_filetype(['python', 'c', 'cpp', 'java'], 'sources', ['nvim-lsp', 'around'])
+    call ddc#custom#patch_filetype(['python', 'c', 'cpp', 'java'], 'sources', ['lsp', 'around'])
 
 " pum.vim
 call ddc#custom#patch_global('autoCompleteEvents', [
@@ -66,13 +75,13 @@ repo = 'Shougo/ddc-sorter_rank'
 on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-source-lsp'
-on_source = 'nvim-lspconfig'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['python', 'c', 'cpp', 'java', 'typescript', 'javascript']
 if = 'has("nvim")'
-depends = ['ddc.vim', 'mason.nvim', 'mason-lspconfig.nvim']
+depends = ['ddc.vim', 'mason.nvim', 'mason-lspconfig.nvim', 'ddc-source-lsp']
 lua_source = '''
 -- Setup language servers
 local lspconfig = require('lspconfig')
@@ -82,6 +91,12 @@ lspconfig.clangd.setup {
 }
 lspconfig.jdtls.setup {}
 lspconfig.tsserver.setup {}
+
+-- Setting for ddc-source-lsp
+local capabilities = require("ddc_source_lsp").make_client_capabilities()
+lspconfig.denols.setup {
+    capabilities = capabilities,
+}
 
 -- Global mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
