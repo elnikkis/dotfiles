@@ -12,7 +12,9 @@ import subprocess
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', dest='force', help='Force create symlinks', action='store_true')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-f', dest='force', help='Force create symlinks', action='store_true')
+    group.add_argument('-n', dest='overwrite', help='No clobber', action='store_true')
     return parser.parse_args()
 
 
@@ -30,6 +32,8 @@ if __name__ == '__main__':
 
     if args.force is True:
         option = '-sfn'
+    elif args.overwrite is True:
+        option = '-sn'
     else:
         option = '-sin'
 
