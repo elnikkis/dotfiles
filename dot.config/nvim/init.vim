@@ -5,7 +5,8 @@ if &compatible
 endif
 
 "let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+" let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = $HOME . '/venv/neovim/bin/python3'
 
 " Begin dein Settings -----------------------------
 
