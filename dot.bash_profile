@@ -42,6 +42,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
 
+# nvm settings
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+
 # for Rust
 if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
