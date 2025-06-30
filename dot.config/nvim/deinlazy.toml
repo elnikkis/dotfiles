@@ -1,4 +1,3 @@
-# for easy comments
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 on_event = ['BufEnter', 'CursorHold']
