@@ -101,5 +101,21 @@ return {
         end,
     },
 
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        lazy = true,
+        config = true,
+    },
+    {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "mason-org/mason.nvim", "nvimtools/none-ls.nvim" },
+        opts = {
+            ensure_installed = { "black" },
+            automatic_installation = true,
+            handlers = {},
+        },
+    },
 
 }
