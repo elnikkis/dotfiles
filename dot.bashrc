@@ -30,7 +30,7 @@ HISTFILESIZE=200000
 
 # History filter using peco
 peco_select_history() {
-    line=$(HISTTIMEFORMAT= history | tac | LC_ALL=C sort -uk2 | LC_ALL=C sort -unrk1 | sed -e 's/^\s*[0-9]\+\s\+//' | peco --on-cancel 'error' --query "$READLINE_LINE")
+    line=$(HISTTIMEFORMAT= history | tac | LC_ALL=C sort -uk2 | LC_ALL=C sort -unrk1 | sed -e 's/^\s*[0-9]\+\s\+//' | TERM=xterm peco --on-cancel 'error' --query "$READLINE_LINE")
     if [ $? -eq 0 ]; then
         READLINE_LINE="$line"
         READLINE_POINT=${#line}
