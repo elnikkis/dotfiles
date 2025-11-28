@@ -43,7 +43,7 @@ return {
         config = function()
             -- vim.lsp.enable({'pyright', 'clangd', 'jdtls', 'ts_ls'})
             vim.lsp.config('clangd', {
-                cmd = { "clangd-11" },
+                cmd = { "clangd" },
             })
             vim.lsp.config('*', {
                 capabilities = require("ddc_source_lsp").make_client_capabilities(),
