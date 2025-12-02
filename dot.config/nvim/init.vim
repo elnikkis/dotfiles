@@ -39,6 +39,32 @@ if has('vim_starting') && dein#check_install()
 endif
 "End dein Settings -------------------------
 
+" function! Is_WSL() abort
+"   let proc_version = '/proc/version'
+"   return filereadable(proc_version)
+"        \  ? !empty(filter(
+"        \    readfile(proc_version, '', 1), { _, val -> val =~? 'microsoft' }))
+"        \  : v:false
+" endfunction
+
+" Clipboard settings
+"set clipboard+=unnamedplus
+"if Is_WSL()
+"    let g:clipboard = {
+"    \   'name': 'WslClipboard',
+"    \   'copy': {
+"    \      '+': ['sh', '-c', 'nkf -sc | clip.exe'],
+"    \      '*': ['sh', '-c', 'nkf -sc | clip.exe'],
+"    \    },
+"    \   'paste': {
+"    \      '+': ['powershell.exe', '-c', '[Console]::OutputEncoding = [Text.Encoding]::UTF8;[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("\`r", "")'],
+"    \      '*': ['powershell.exe', '-c', '[Console]::OutputEncoding = [Text.Encoding]::UTF8;[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("\`r", "")'],
+"    \   },
+"    \   'cache_enabled': 0,
+"    \ }
+"endif
+"    \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+
 filetype plugin indent on
 syntax on
 
