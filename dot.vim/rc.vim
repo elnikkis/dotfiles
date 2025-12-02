@@ -1,3 +1,6 @@
+" Set leader
+let mapleader = "\<Space>"
+
 " Enable rst style
 let g:rst_style = 1
 

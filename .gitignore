@@ -1,1 +1,4 @@
 dot.vim/bundle/
+dot.config/nvm/
+dot.config/pypoetry/
+dot.config/configstore/
