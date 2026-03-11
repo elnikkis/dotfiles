@@ -33,4 +33,17 @@ return {
         "vim-denops/denops.vim",
         event = { "VeryLazy", "BufEnter", "CursorHold" },
     },
+
+    -- UI enhancements
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {
+            indent = {
+                char = "|",
+            },
+        },
+    },
 }
