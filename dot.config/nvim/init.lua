@@ -6,6 +6,7 @@ vim.g.python3_host_prog = vim.fn.expand('$HOME') .. '/venv/neovim/bin/python3'
 
 
 require("config.lazy")
+require("config.autocmds")
 
 -- Source existing vim configuration for compatibility
 local rc_vim = vim.fn.expand('~/.vim/rc.vim')
