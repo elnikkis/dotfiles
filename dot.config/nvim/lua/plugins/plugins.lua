@@ -27,6 +27,32 @@ return {
         "cespare/vim-toml",
         ft = "toml",
     },
+    {
+        "catgoose/nvim-colorizer.lua",
+        ft = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+        opts = {
+            filetypes = {
+                "css",
+                "html",
+                "javascript",
+                "typescript",
+                "javascriptreact",
+                "typescriptreact",
+            },
+            options = {
+                parsers = {
+                    css = true,        -- hex, rgb(), hsl() など一括有効化
+                    tailwind = {
+                        enable = true,   -- bundled済みのTailwindカラー名をハイライト
+                        lsp = false,     -- LSP未導入なのでfalse
+                    },
+                },
+                display = {
+                    mode = "background", -- カラーコードの背景色でプレビュー
+                },
+            },
+        },
+    },
 
     -- Denops ecosystem
     {
