@@ -54,6 +54,17 @@ return {
         },
     },
 
+    -- MDX support
+    {
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        build = ':TSUpdate'
+    },
+    {
+        "davidmh/mdx.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
+
     -- Denops ecosystem
     {
         "vim-denops/denops.vim",
