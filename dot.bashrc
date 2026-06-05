@@ -29,8 +29,15 @@ HISTSIZE=100000
 HISTFILESIZE=200000
 
 # History filter using peco
+reverse_lines() {
+    if command -v tac >/dev/null 2>&1; then
+        tac
+    else
+        tail -r
+    fi
+}
 peco_select_history() {
-    line=$(HISTTIMEFORMAT= history | tac | LC_ALL=C sort -uk2 | LC_ALL=C sort -unrk1 | sed -e 's/^\s*[0-9]\+\s\+//' | TERM=xterm peco --on-cancel 'error' --query "$READLINE_LINE")
+    line=$(HISTTIMEFORMAT= history | reverse_lines | LC_ALL=C sort -u -k2 | LC_ALL=C sort -n -r -k1 | sed -e 's/^[[:space:]]*[0-9][0-9]*[[:space:]][[:space:]]*//' | TERM=xterm peco --on-cancel 'error' --query "$READLINE_LINE")
     if [ $? -eq 0 ]; then
         READLINE_LINE="$line"
         READLINE_POINT=${#line}
@@ -48,10 +55,12 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-shopt -s globstar
+shopt -s globstar 2>/dev/null || true
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+if command -v lesspipe >/dev/null 2>&1; then
+    eval "$(SHELL=/bin/sh lesspipe)"
+fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -69,7 +78,7 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    if command -v tput >/dev/null 2>&1 && tput setaf 1 >&/dev/null; then
         # We have color support; assume it's compliant with Ecma-48
         # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
         # a case would tend to support setf rather than setaf.)
@@ -86,6 +95,22 @@ else
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     PS1='\u@\h \W \$ '
 fi
+
+# Load git prompt support when it is available.
+for git_prompt in \
+    /usr/share/git-core/contrib/completion/git-prompt.sh \
+    /etc/bash_completion.d/git-prompt \
+    /opt/homebrew/share/git-core/contrib/completion/git-prompt.sh \
+    /usr/local/share/git-core/contrib/completion/git-prompt.sh \
+    /opt/homebrew/etc/bash_completion.d/git-prompt.sh \
+    /usr/local/etc/bash_completion.d/git-prompt.sh
+do
+    if [ -r "$git_prompt" ]; then
+        . "$git_prompt"
+        break
+    fi
+done
+unset git_prompt
 
 # Set git info
 if [ "$(type -t __git_ps1)" = "function" ]; then
@@ -109,8 +134,10 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if command -v dircolors >/dev/null 2>&1 || command -v gdircolors >/dev/null 2>&1; then
+    dircolors_cmd=$(command -v dircolors || command -v gdircolors)
+    test -r ~/.dircolors && eval "$("$dircolors_cmd" -b ~/.dircolors)" || eval "$("$dircolors_cmd" -b)"
+    unset dircolors_cmd
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -118,6 +145,14 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+elif [ "$(uname -s)" = "Darwin" ]; then
+    export CLICOLOR=1
+    alias ls='ls -G'
+    if command -v grep >/dev/null 2>&1 && grep --color=auto '' /dev/null >/dev/null 2>&1; then
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
 fi
 
 # colored GCC warnings and errors
@@ -136,15 +171,35 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    for bash_completion in \
+        /usr/share/bash-completion/bash_completion \
+        /etc/bash_completion \
+        /opt/homebrew/etc/bash_completion \
+        /usr/local/etc/bash_completion
+    do
+        if [ -r "$bash_completion" ]; then
+            . "$bash_completion"
+            bash_completion_loaded=yes
+            break
+        fi
+    done
+    if [ -z "$bash_completion_loaded" ] && \
+        { [ "${BASH_VERSINFO[0]}" -gt 4 ] || { [ "${BASH_VERSINFO[0]}" -eq 4 ] && [ "${BASH_VERSINFO[1]}" -ge 1 ]; }; }; then
+        for bash_completion in \
+            /opt/homebrew/etc/profile.d/bash_completion.sh \
+            /usr/local/etc/profile.d/bash_completion.sh
+        do
+            if [ -r "$bash_completion" ]; then
+                . "$bash_completion"
+                break
+            fi
+        done
+    fi
+    unset bash_completion bash_completion_loaded
 fi
 
 # pyenv
-if [ ! -e $PYENV_ROOT ]; then
+if [ -n "$PYENV_ROOT" ] && [ ! -e "$PYENV_ROOT" ]; then
     echo "Do you wish to install pyenv to $PYENV_ROOT?"
     PS3="Enter a number: "
     select yn in "Yes" "No"; do
@@ -162,9 +217,18 @@ if [ ! -e $PYENV_ROOT ]; then
 fi
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    if pyenv commands | grep -qx 'virtualenv-init'; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
 fi
 
 # nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+for nvm_prefix in "$NVM_DIR" /opt/homebrew/opt/nvm /usr/local/opt/nvm
+do
+    if [ -s "$nvm_prefix/nvm.sh" ]; then
+        . "$nvm_prefix/nvm.sh"  # This loads nvm
+        [ -s "$nvm_prefix/bash_completion" ] && . "$nvm_prefix/bash_completion"  # This loads nvm bash_completion
+        break
+    fi
+done
+unset nvm_prefix
